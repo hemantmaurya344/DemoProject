@@ -13,7 +13,7 @@ pipeline {
     }
     stage('Build and Test') {
       steps {
-        sh 'mvn clean package'
+        sh 'mvn clean package -X -e'
       }
     }
     stage('Build and Push Docker Image') {
