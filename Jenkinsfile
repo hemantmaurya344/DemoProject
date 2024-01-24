@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'abhishekf5/maven-abhishek-docker-agent:v1'
+      image 'hemantmaurya344/docker-maven:v1'
       args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
     }
   }
@@ -13,8 +13,7 @@ pipeline {
     }
     stage('Build and Test') {
       steps {
-        sh 'mvn --version'
-        sh 'mvn clean package -X -e'
+        sh 'mvn clean package'
       }
     }
     stage('Build and Push Docker Image') {
