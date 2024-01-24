@@ -13,6 +13,7 @@ pipeline {
     }
     stage('Build and Test') {
       steps {
+        sh 'mvn --version'
         sh 'mvn clean package -X -e'
       }
     }
