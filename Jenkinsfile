@@ -37,6 +37,11 @@ pipeline {
       }
     }    
     stage('Deploy To Docker'){
-        
+        steps{
+          script{
+            sh 'docker ps -q -f "name=app" | docker stop | docker rm'
+            sh 'docker run --name=app -d -p 5000:1010 ${DOCKER_IMAGE}'
+          }
+        }
     }
 }
