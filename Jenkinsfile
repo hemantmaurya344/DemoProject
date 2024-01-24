@@ -12,6 +12,11 @@ pipeline {
       }
     }
     stage('Build and Test') {
+      environment{
+          dataUrl = credentials('dataUrl')
+          userName = credentials('userName')
+          password = credentials('password')
+      }
       steps {
         sh 'mvn clean package'
       }
