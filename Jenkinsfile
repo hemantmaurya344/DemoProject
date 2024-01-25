@@ -38,15 +38,12 @@ pipeline {
     }
     stage('Deploy to Docker'){
        environment {
-        DOCKER_IMAGE = "hemantmaurya344/sample:${BUILD_NUMBER}"      
-        DATA_URL = credentials('dataUrl')
-        USERNAME = credentials('userName')
-        PASSWORD = credentials('password')
+        DOCKER_IMAGE = "hemantmaurya344/sample:${BUILD_NUMBER}"
       }
       steps{
         script{
           sh 'docker ps -aqf "name=app" | xargs docker stop | xargs docker rm'
-          sh 'docker run --name=application -d -p 1010:1010 -e dataUrl=DATA_URL -e userName=USERNAME -e password=PASSWORD $DOCKER_IMAGE'
+          sh 'docker run --name=application -d -p 1010:1010 -e dataUrl=jdbc:mysql://database-2.cz2jndsm8vlr.eu-north-1.rds.amazonaws.com/demoproject?serverTimezone=UTC -e userName=hotel1 -e password=hotel123 $DOCKER_IMAGE'
         }
       }
     }
