@@ -43,7 +43,7 @@ pipeline {
       steps{
         script{
           sh 'docker ps -aqf "name=app" | xargs docker stop | xargs docker rm'
-          sh 'docker run --name=application -d -p 1010:1010 $DOCKER_IMAGE'
+          sh 'docker run --name=application --env-file envfile -d -p 1010:1010 $DOCKER_IMAGE'
         }
       }
     }
