@@ -46,7 +46,7 @@ pipeline {
       steps{
         script{
           sh 'docker ps -aqf "name=app" | xargs docker stop | xargs docker rm'
-          sh 'docker run --name=application -d -p 1010:1010 -e dataUrl=DATA_URL -e userName=USERNAME -e pasword=PASSWORD $DOCKER_IMAGE'
+          sh 'docker run --name=application -d -p 1010:1010 -e dataUrl=DATA_URL -e userName=USERNAME -e password=PASSWORD $DOCKER_IMAGE'
         }
       }
     }
