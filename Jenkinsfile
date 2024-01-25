@@ -37,9 +37,12 @@ pipeline {
       }
     }
     stage('Deploy to Docker'){
+       environment {
+        DOCKER_IMAGE = "hemantmaurya344/sample:${BUILD_NUMBER}"
+      }
       steps{
         script{
-          sh 'docker ps -q -f "name=grafana-server" | xargs docker stop | xargs docker rm'
+          sh 'docker ps -q -f "name=application" | xargs docker stop | xargs docker rm'
           sh 'docker run --name=application -d -p 1010:1010 $DOCKER_IMAGE'
         }
       }
