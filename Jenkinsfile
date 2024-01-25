@@ -39,10 +39,14 @@ pipeline {
     stage('Deploy to Docker'){
        environment {
         DOCKER_IMAGE = "hemantmaurya344/sample:${BUILD_NUMBER}"
+        dataUrl = credentials('dataUrl')
+        userName = credentials('userName')
+        password = credentials('password')
+         
       }
       steps{
         script{
-          sh 'docker ps -q -f "name=application" | xargs docker stop | xargs docker rm'
+          sh 'docker ps -aqf "name=app" | xargs docker stop | xargs docker rm'
           sh 'docker run --name=application -d -p 1010:1010 $DOCKER_IMAGE'
         }
       }
