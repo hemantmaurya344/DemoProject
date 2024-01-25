@@ -38,11 +38,7 @@ pipeline {
     }
     stage('Deploy to Docker'){
        environment {
-        DOCKER_IMAGE = "hemantmaurya344/sample:${BUILD_NUMBER}"
-        dataUrl = credentials('dataUrl')
-        userName = credentials('userName')
-        password = credentials('password')
-         
+        DOCKER_IMAGE = "hemantmaurya344/sample:${BUILD_NUMBER}"        
       }
       steps{
         script{
