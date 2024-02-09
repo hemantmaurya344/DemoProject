@@ -42,7 +42,7 @@ pipeline {
       }
       steps{
         script{
-          sh 'docker ps -aqf "name=app" | xargs docker stop | xargs docker rm'
+          sh 'docker ps -aqf "name=application" | xargs docker stop | xargs docker rm'
           sh 'docker run --name=application -d -p 1010:1010 -e dataUrl=jdbc:mysql://database-2.cz2jndsm8vlr.eu-north-1.rds.amazonaws.com/demoproject?serverTimezone=UTC -e userName=hotel1 -e password=hotel123 $DOCKER_IMAGE'
         }
       }
